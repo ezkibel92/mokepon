@@ -11,20 +11,61 @@ function iniciarJuego(){
 }
 
 function seleccionarMascota(){
-    let seleccionado = '';
-    if(document.getElementById('hipodoge').checked){
+    let inputHipodoge = document.getElementById('hipodoge');
+    let inputCapipepo = document.getElementById('capipepo');
+    let inputRatigueya = document.getElementById('ratigueya');
+    let spanMascotaJugador = document.getElementById('mascotaJugador');
 
-        seleccionado = 'Hipodoge';
+    if(inputHipodoge.checked){
 
-    }else if(document.getElementById('capipepo').checked){
+        alert('SELECCIONASTE TU MASCOTA: Hipodoge');
+        spanMascotaJugador.innerHTML = 'Hipodoge';
+
+    }else if(inputCapipepo.checked){
         
-        seleccionado = 'Capipepo';
+        alert('SELECCIONASTE TU MASCOTA: Capipepo');
+        spanMascotaJugador.innerHTML = 'Capipepo';
 
-    }else if(document.getElementById('ratigueya').checked){
+    }else if(inputRatigueya.checked){
 
-        seleccionado = 'Ratigueya';
+        alert('SELECCIONASTE TU MASCOTA: Ratigueya');
+        spanMascotaJugador.innerHTML = 'Ratigueya';
 
+    }else{
+        alert('SELECCIONA UNA DE LAS MASCOTAS');
     }
-    alert('SELECCIONASTE TU MASCOTA: '+seleccionado);
+
+    seleccionarMascotaEnemigo();
+
 }
 
+function seleccionarMascotaEnemigo(){
+
+    let mascotaAleatoria = aleatorio(1,3)
+    let spanMascotaEnemigo = getElementById('mascotaEnemigo')
+
+    if(mascotaAleatoria == 1){
+
+        alert('LA MASCOTA DEL ENEMIGO ES: Hipodoge');
+        spanMascotaEnemigo.innerHTML = 'Hipodoge';
+
+    }else if(mascotaAleatoria == 2){
+        
+        alert('LA MASCOTA DEL ENEMIGO ES: Capipepo');
+        spanMascotaEnemigo.innerHTML = 'Capipepo';
+
+    }else if(mascotaAleatoria == 3){
+
+        alert('LA MASCOTA DEL ENEMIGO ES: Ratigueya');
+        spanMascotaEnemigo.innerHTML = 'Ratigueya';
+
+    }else{
+        alert('EL ENEMIGO NO SELECCIONÓ MASCOTA');
+    }
+
+}
+
+
+function aleatorio(min, max){
+    return Math.floor(Math.random() * (max - min + 1)+ min);
+}
