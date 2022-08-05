@@ -4,6 +4,9 @@ window.addEventListener('load',iniciarJuego)
 
 let ataqueJugador;
 let ataqueEnemigo;
+let vidasJugador = 3;
+let vidasEnemigo = 3;
+
 function iniciarJuego(){
 
     let botonMascota = document.getElementById('boton-mascota');
@@ -44,6 +47,8 @@ function ataqueAleatorioEnemigo(){
         alert('ALGO SALIÓ MAL CON LOS ATAQUES DEL ENEMIGO')
 
     }
+
+    combate();
 
 }
 
@@ -125,3 +130,58 @@ function seleccionarMascotaEnemigo(){
 function aleatorio(min, max){
     return Math.floor(Math.random() * (max - min + 1)+ min);
 }
+
+function combate(){
+ 
+    let spanVidasJugador = document.getElementById('vidasJugador')
+    let spanVidasEnemigo = document.getElementById('vidasEnemigo')
+
+     if(ataqueJugador == ataqueEnemigo){
+
+        crearMensaje('EMPATE 😛');
+
+     }else if(ataqueJugador == 'AGUA' && ataqueEnemigo == 'FUEGO'){
+
+        vidasEnemigo--
+        spanVidasEnemigo.innerHTML = vidasEnemigo;
+        crearMensaje('GANASTE 🎉');
+
+     }else if(ataqueJugador == 'FUEGO' && ataqueEnemigo == 'TIERRA'){
+
+        vidasEnemigo--
+        spanVidasEnemigo.innerHTML = vidasEnemigo;
+        crearMensaje('GANASTE 🎉');
+
+     }else if(ataqueJugador == 'TIERRA' && ataqueEnemigo == 'AGUA'){
+
+        vidasEnemigo--
+        spanVidasEnemigo.innerHTML = vidasEnemigo;
+        crearMensaje('GANASTE 🎉');
+
+     }else{
+
+        vidasJugador--
+        spanVidasJugador.innerHTML = vidasJugador;
+        crearMensaje('PERDISTE 😓');
+     }
+    
+    if (vidasJugador == 0){
+
+        crearMensaje('PERDISTE 😓 y te haz quedado sin vidas' );
+
+    }else if(vidasEnemigo == 0){
+        vidas
+        crearMensaje('GANASTE 🎉 y el enemigo se ha quedado sin vidas' );
+
+    }
+
+}
+
+function crearMensaje(resultado){
+    let seccionMensaje = document.getElementById('mensajes');
+    let parrafo = document.createElement('p');
+    parrafo.innerHTML = 'Tu mascota atacó con '+ataqueJugador+', la mascota del enemigo ataco con '+ataqueEnemigo+' - '+resultado;
+    seccionMensaje.appendChild(parrafo);
+}
+
+
