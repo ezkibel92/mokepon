@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Rampart+One:wght@300;400;500;600&display=swap");
+
+body{
+    margin: auto 0;
+    background-color: #90dbc5;
+}
+h1{
+    font-family: 'Rampart One', cursive;
+    color: #8aaf38 ;
+    text-align: center;
+}
+
+h2 {
+
+    color: #e7f14a;
+    text-align: center;
+}
+
+
+
+
+.tarjetas{
+    display: flex;
+    justify-content: space-evenly;
+
+    
+}
+
+#seleccionar-mascota label{
+    height:21vh ;
+    width: 30vw;
+    background-color: rgb(133, 110, 218);
+    border-radius: 10%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50%;
+    
+    
+
+}
+
+#seleccionar-mascota p{
+    color: #000000;
+    margin: auto 0;
+    font-family: 'Rampart One', cursive;
+    text-align: center;
+    
+
+}
+
+
+input {
+    display: none;
+}
+
+#seleccionar-mascota button {
+    display: flex;
+    margin: auto;
+}
