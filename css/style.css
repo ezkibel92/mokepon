@@ -3,17 +3,19 @@
 body{
     margin: auto 0;
     background-color: #90dbc5;
+    background-image: url('../img/fondo.jpg');
+    background-size: cover;
 }
 h1{
     font-family: 'Rampart One', cursive;
-    color: #8aaf38 ;
+    color: #000000 ;
     text-align: center;
     font-size: 200%;
 }
 
 h2 {
 
-    color: #e7f14a;
+    color: #000000;
     text-align: center;
 }
 
@@ -30,15 +32,14 @@ h2 {
 #seleccionar-mascota label{
     height:21vh ;
     width: 30vw;
-    background-color: rgb(133, 110, 218);
+    background-color: rgb(152, 235, 127);
     border-radius: 10%;
     display: flex;
     flex-direction: column;
-    margin-bottom: 50%;
+    margin-bottom: 30%;
     
-    
-
 }
+
 
 #seleccionar-mascota p{
     color: #000000;
@@ -55,6 +56,9 @@ input {
 }
 
 #seleccionar-mascota button {
-    display: flex;
-    margin: auto;
+    border-radius: 20px;
+    margin-left: 35%;
+    width: 30vw;
+    height: 15vw;
+    border: 1px solid white;
 }
