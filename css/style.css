@@ -4,7 +4,7 @@ body{
     margin: auto 0;
     background-color: #90dbc5;
     background-image: url('../img/fondo.jpg');
-    background-size: cover;
+
 }
 h1{
     font-family: 'Rampart One', cursive;
@@ -32,7 +32,7 @@ h2 {
 #seleccionar-mascota label{
     height:21vh ;
     width: 30vw;
-    background-color: rgb(152, 235, 127);
+    background-color: rgb(5, 130, 202);
     border-radius: 10%;
     display: flex;
     flex-direction: column;
@@ -60,5 +60,22 @@ input {
     margin-left: 35%;
     width: 30vw;
     height: 15vw;
-    border: 1px solid white;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+#seleccionar-ataque{
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.boton-de-ataque{
+
+    background-color:rgb(5, 130, 202) ;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    width: 30vw;
+    height: 15vw;
+    border-color: transparent;
 }

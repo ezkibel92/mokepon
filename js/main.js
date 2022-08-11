@@ -91,7 +91,7 @@ function seleccionarMascota(){
     sectionMascota.style.display = 'none';
 
     let sectionAtaque = document.getElementById('seleccionar-ataque');
-    sectionAtaque.style.display = 'block';
+    sectionAtaque.style.display = 'flex';
 
     if(inputHipodoge.checked){
 
