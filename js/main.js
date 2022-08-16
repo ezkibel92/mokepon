@@ -192,10 +192,20 @@ function combate(){
 }
 
 function crearMensaje(resultado){
-    let seccionMensaje = document.getElementById('mensajes');
-    let parrafo = document.createElement('p');
-    parrafo.innerHTML = 'Tu mascota atacó con '+ataqueJugador+', la mascota del enemigo ataco con '+ataqueEnemigo+' - '+resultado;
-    seccionMensaje.appendChild(parrafo);
+    let seccionMensaje = document.getElementById('resultado');
+    let ataqueDelJugador = document.getElementById('ataque-Del-Jugador');
+    let ataqueDelEnemigo = document.getElementById('ataque-Del-Enemigo');
+
+    let nuevoAtaqueJugador = document.createElement('p');
+    let nuevoAtaqueEnemigo = document.createElement('p');
+
+    seccionMensaje.innerHTML = resultado;
+    nuevoAtaqueJugador.innerHTML = ataqueJugador;
+    nuevoAtaqueEnemigo.innerHTML = ataqueEnemigo;
+
+    
+    ataqueDelJugador.appendChild(nuevoAtaqueJugador);
+    ataqueDelEnemigo.appendChild(nuevoAtaqueEnemigo);
 }
 
 
