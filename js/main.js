@@ -182,10 +182,10 @@ function combate(){
     
     if (vidasJugador == 0){
 
-        resultadoFinal('😓😓😓 PERDISTE 😓😓😓 y te haz quedado sin vidas' );
+        resultadoFinal('😓 HAZ PERDIDO' );
 
     }else if(vidasEnemigo == 0){
-        resultadoFinal('🎉🎉🎉 GANASTE 🎉🎉🎉 y el enemigo se ha quedado sin vidas' );
+        resultadoFinal('🎉 HAZ GANADO' );
 
     }
 
@@ -211,10 +211,10 @@ function crearMensaje(resultado){
 
 function resultadoFinal(resultado){
 
-    let seccionMensaje = document.getElementById('mensajes');
-    let parrafo = document.createElement('p');
+    let parrafo = document.getElementById('mensajes');
+    
     parrafo.innerHTML = resultado;
-    seccionMensaje.appendChild(parrafo);
+  
 
     let botonAgua = document.getElementById('boton-agua');
     botonAgua.disabled = true;

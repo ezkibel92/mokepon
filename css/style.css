@@ -92,3 +92,32 @@ input {
     background-color: rgb(255, 255, 255);
     
 }
+
+#boton-reiniciar{
+    color: #ffffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    margin-top: 20px;
+    width: 30vw;
+    height: 15vw;
+    border: 1px solid rgb(0, 0, 0);
+    background-color: rgb(24, 23, 21);
+}
+
+.ataque{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 150px 150px;
+    text-align: center;
+    column-gap: 60px;
+   
+}
+
+.historial{
+
+    background-color:rgba(5, 130, 202, 0.2) ;    
+    border-radius: 10px;
+    border: solid rgb(142, 224, 229);
+}
