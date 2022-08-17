@@ -85,7 +85,7 @@ input:checked + label{
     border-color: transparent;
 }
 
-.boton-de-ataque:active{
+.boton-de-ataque:hover{
 
     background-color: rgb(243, 69, 69);
 
