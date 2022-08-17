@@ -28,11 +28,12 @@ h2 {
 
     
 }
-
+label {
+    background-color: rgb(5, 130, 202);
+}
 #seleccionar-mascota label{
     height:21vh ;
     width: 30vw;
-    background-color: rgb(5, 130, 202);
     border-radius: 10%;
     display: flex;
     flex-direction: column;
@@ -53,6 +54,10 @@ h2 {
 
 input {
     display: none;
+}
+
+input:checked + label{
+    background-color: rgb(243, 69, 69);
 }
 
 #seleccionar-mascota button {
@@ -78,6 +83,12 @@ input {
     width: 30vw;
     height: 15vw;
     border-color: transparent;
+}
+
+.boton-de-ataque:active{
+
+    background-color: rgb(243, 69, 69);
+
 }
 
 #mensajes {
