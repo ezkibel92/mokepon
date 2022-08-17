@@ -182,10 +182,10 @@ function combate(){
     
     if (vidasJugador == 0){
 
-        resultadoFinal('😓 HAZ PERDIDO' );
+        resultadoFinal('😓 HAS PERDIDO' );
 
     }else if(vidasEnemigo == 0){
-        resultadoFinal('🎉 HAZ GANADO' );
+        resultadoFinal('🎉 HAS GANADO' );
 
     }
 
