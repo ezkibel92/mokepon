@@ -2,7 +2,7 @@
 //Este evento de window, agregando el parametro load, ejecuta el otro parametro cuando termine de cargar el HTML
 window.addEventListener('load',iniciarJuego);
 
-const constbotonMascota = document.getElementById('boton-mascota');
+const botonMascota = document.getElementById('boton-mascota');
 const sectionReinicio = document.getElementById('reiniciar');
 const botonReinicio = document.getElementById('boton-reiniciar');
 const inputHipodoge = document.getElementById('hipodoge');
