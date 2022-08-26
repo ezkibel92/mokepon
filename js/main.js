@@ -21,15 +21,18 @@ const sectionReiniciar = document.getElementById('reiniciar');
 const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 const contenedorAtaques = document.getElementById('contenedorAtaques');
 
-let mokepones = []
+let mokepones = [];
 let ataqueJugador = [];
-let ataqueEnemigo;
+let ataqueEnemigo=[];
 let botonAgua;
 let botonFuego;
 let botonTierra;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 let ataquesMokepon;
+let ataquesMokeponEnemigo;
+let indexAtaqueEnemigo;
+let indexAtaqueJugador;
 let opcionMokepones;
 let inputHipodoge;
 let inputCapipepo;
@@ -108,27 +111,22 @@ function iniciarJuego(){
 
 
 function ataqueAleatorioEnemigo(){
-    let ataque = aleatorio(1,3)
+    let ataque = aleatorio(0,ataquesMokeponEnemigo.length - 1)
 
-    if (ataque == 1){
+    if (ataque == 0 || ataque == 1){
 
-        ataqueEnemigo = 'AGUA';
-        alert(ataqueEnemigo);
+        ataqueEnemigo.push('AGUA');
+        
 
-    }else if(ataque == 2){
+    }else if(ataque == 3 || ataque == 4){
 
-        ataqueEnemigo = 'FUEGO';
-        alert(ataqueEnemigo);
-
-    }else if(ataque == 3){
-
-        ataqueEnemigo = 'TIERRA';
-        alert(ataqueEnemigo);
+        ataqueEnemigo.push('FUEGO');
+        
 
     }else{
 
-        alert('ALGO SALIÓ MAL CON LOS ATAQUES DEL ENEMIGO')
-
+        ataqueEnemigo.push('TIERRA');
+        
     }
 
     combate();
@@ -218,6 +216,8 @@ function secuenciaAtaque(){
                 ataqueJugador.push('TIERRA')
                 boton.style.background = '#F34545'
             }
+
+            ataqueAleatorioEnemigo();
          })
      });
 
@@ -229,11 +229,24 @@ function seleccionarMascotaEnemigo(){
     
 
     spanMascotaEnemigo.innerHTML = mokepones[mascotaAleatoria].nombre;
+    ataquesMokeponEnemigo = mokepones[mascotaAleatoria].ataques
     alert("LA MASCOTA DEL ENEMIGO ES: "+mokepones[mascotaAleatoria].nombre)
 }
 
 
+function iniciarPelea(){
 
+    for (let index = 0; index < ataqueJugador.length; index++) {
+      
+        if(ataqueJugador[index] === ataqueEnemigo[index]){
+
+            crearMensaje("EMPATE")
+
+        }
+        
+    }
+
+}
 
 function combate(){
  
@@ -285,8 +298,8 @@ function crearMensaje(resultado){
     let nuevoAtaqueEnemigo = document.createElement('p');
 
     seccionMensaje.innerHTML = resultado;
-    nuevoAtaqueJugador.innerHTML = ataqueJugador;
-    nuevoAtaqueEnemigo.innerHTML = ataqueEnemigo;
+    nuevoAtaqueJugador.innerHTML = indexAtaqueJugador;
+    nuevoAtaqueEnemigo.innerHTML = indexAtaqueEnemigo;
 
     
     ataqueDelJugador.appendChild(nuevoAtaqueJugador);
