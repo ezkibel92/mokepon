@@ -22,7 +22,7 @@ const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 const contenedorAtaques = document.getElementById('contenedorAtaques');
 
 let mokepones = []
-let ataqueJugador;
+let ataqueJugador = [];
 let ataqueEnemigo;
 let botonAgua;
 let botonFuego;
@@ -35,6 +35,7 @@ let inputHipodoge;
 let inputCapipepo;
 let inputRatigueya;
 let mascotaJugador;
+let botones = [];
 
 class Mokepon{
 
@@ -134,23 +135,7 @@ function ataqueAleatorioEnemigo(){
 
 }
 
-function ataqueAgua(){
 
-    ataqueJugador = 'AGUA';
-   
-}
-
-function ataqueFuego(){
-
-    ataqueJugador = 'FUEGO';
-    
-}
-
-function ataqueTierra(){
-
-    ataqueJugador = 'TIERRA';
-    
-}
 
 function seleccionarMascota(){
 
@@ -197,7 +182,7 @@ function extraerAtaques(mascotaJugador){
         
     }
     mostrarAtaques(ataques);
-
+    secuenciaAtaque();
 }
 
 
@@ -205,25 +190,38 @@ function mostrarAtaques(ataques){
 
     ataques.forEach((ataque) => {
 
-        ataquesMokepon =`<button id=${ataque.id} class="boton-de-ataque">${ataque.nombre} </button> `
+        ataquesMokepon =`<button id=${ataque.id} class="boton-de-ataque BAtaque">${ataque.nombre} </button> `
         contenedorAtaques.innerHTML += ataquesMokepon;
     })
 
      botonAgua = document.getElementById('boton-agua');
      botonFuego = document.getElementById('boton-fuego');
      botonTierra = document.getElementById('boton-tierra');
+     
+     botones = document.querySelectorAll('.BAtaque');
 
-  
-     botonAgua.addEventListener('click', ataqueAgua);
-     botonFuego.addEventListener('click', ataqueFuego);
-     botonTierra.addEventListener('click', ataqueTierra);
-
-     botonAgua.addEventListener('click', ataqueAleatorioEnemigo);
-     botonFuego.addEventListener('click', ataqueAleatorioEnemigo);
-     botonTierra.addEventListener('click', ataqueAleatorioEnemigo); 
+     
 }
 
 
+function secuenciaAtaque(){
+
+     botones.forEach((boton) => {
+        boton.addEventListener('click', (e) => {
+            if(e.target.textContent === '🔥'){
+                ataqueJugador.push('FUEGO')
+                boton.style.background = '#F34545'
+            }else if(e.target.textContent === '💧'){
+                ataqueJugador.push('AGUA')
+                boton.style.background = '#F34545'
+            }else{
+                ataqueJugador.push('TIERRA')
+                boton.style.background = '#F34545'
+            }
+         })
+     });
+
+}
 
 function seleccionarMascotaEnemigo(){
 
