@@ -39,6 +39,8 @@ let inputCapipepo;
 let inputRatigueya;
 let mascotaJugador;
 let botones = [];
+let victoriasJugador = 0;
+let victoriasEnemigo = 0;
 
 class Mokepon{
 
@@ -209,12 +211,15 @@ function secuenciaAtaque(){
             if(e.target.textContent === '🔥'){
                 ataqueJugador.push('FUEGO')
                 boton.style.background = '#F34545'
+                boton.disabled = true;
             }else if(e.target.textContent === '💧'){
                 ataqueJugador.push('AGUA')
                 boton.style.background = '#F34545'
+                boton.disabled = true;
             }else{
                 ataqueJugador.push('TIERRA')
                 boton.style.background = '#F34545'
+                boton.disabled = true;
             }
 
             ataqueAleatorioEnemigo();
@@ -236,57 +241,78 @@ function seleccionarMascotaEnemigo(){
 
 function iniciarPelea(){
 
-    for (let index = 0; index < ataqueJugador.length; index++) {
-      
-        if(ataqueJugador[index] === ataqueEnemigo[index]){
-
-            crearMensaje("EMPATE")
-
-        }
-        
+    if(ataqueJugador.length === 5){
+        combate();
     }
 
 }
 
+function indexAmbosOponentes(jugador, enemigo){
+
+    indexAtaqueJugador = ataqueJugador[jugador];
+    indexAtaqueEnemigo = ataqueEnemigo[enemigo];
+
+
+}
+
+
 function combate(){
  
-    
+    for (let index = 0; index < ataqueJugador.length; index++) {
+      
+        if(ataqueJugador[index] === ataqueEnemigo[index]){
+            indexAmbosOponentes(index, index);
+            crearMensaje("EMPATE");
 
-     if(ataqueJugador == ataqueEnemigo){
+        }else if(ataqueJugador[index] === 'AGUA' && ataqueEnemigo[index] === 'FUEGO'){
 
-        crearMensaje('EMPATE 😛');
-
-        }else if(ataqueJugador == 'AGUA' && ataqueEnemigo == 'FUEGO'){
-
-            vidasEnemigo--;
-            spanVidasEnemigo.innerHTML = vidasEnemigo;
+            indexAmbosOponentes(index, index);
             crearMensaje('GANASTE 🎉');
+            victoriasJugador++
+            spanVidasJugador.innerHTML = victoriasJugador;
 
-        }else if(ataqueJugador == 'FUEGO' && ataqueEnemigo == 'TIERRA'){
+        }else if(ataqueJugador[index] === 'FUEGO' && ataqueEnemigo[index] === 'TIERRA'){
 
-            vidasEnemigo--;
-            spanVidasEnemigo.innerHTML = vidasEnemigo;
+            indexAmbosOponentes(index, index);
             crearMensaje('GANASTE 🎉');
+            victoriasJugador++
+            spanVidasJugador.innerHTML = victoriasJugador;
 
-        }else if(ataqueJugador == 'TIERRA' && ataqueEnemigo == 'AGUA'){
 
-            vidasEnemigo--;
-            spanVidasEnemigo.innerHTML = vidasEnemigo;
+        }else if(ataqueJugador[index] === 'TIERRA' && ataqueEnemigo[index] === 'AGUA'){
+
+            indexAmbosOponentes(index, index);
             crearMensaje('GANASTE 🎉');
+            victoriasJugador++
+            spanVidasJugador.innerHTML = victoriasJugador;
 
-            }else{
 
-                vidasJugador--;
-                spanVidasJugador.innerHTML = vidasJugador;
-                crearMensaje('PERDISTE 😓');
-            }
-    
-    if (vidasJugador == 0){
+        }else{
 
-        resultadoFinal('😓 HAS PERDIDO' );
+            indexAmbosOponentes(index, index);
+            crearMensaje('PERDISTE 😓');
+            victoriasEnemigo++
+            spanVidasEnemigo.innerHTML = victoriasEnemigo;
 
-    }else if(vidasEnemigo == 0){
-        resultadoFinal('🎉 HAS GANADO' );
+        }
+
+    }
+    revisarVidas();
+}
+
+function revisarVidas(){
+
+    if (victoriasJugador === victoriasEnemigo){
+
+        resultadoFinal("Esto fue un empate!!!")
+
+    }else if(victoriasJugador > victoriasEnemigo){
+
+        resultadoFinal("FELICITACIONES Ganaste!")
+
+    }else{
+
+        resultadoFinal("PERDISTE")
 
     }
 
@@ -313,16 +339,6 @@ function resultadoFinal(resultado){
     
     parrafo.innerHTML = resultado;
   
-
-    
-    botonAgua.disabled = true;
-    
-    
-    botonFuego.disabled = true;
-   
-
-    
-    botonTierra.disabled = true;
 
     
     sectionReiniciar.style.display = 'block';
