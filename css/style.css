@@ -130,6 +130,19 @@ input:checked + label{
     border: solid rgb(142, 224, 229);
 }
 
+#ver-mapa {
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#mapa {
+
+    border: 2px solid white;
+
+}
+
 @media (min-width: 768px){
  
     body{ 
@@ -172,3 +185,4 @@ input:checked + label{
         font-size: 1.5em;
     }
 }
+

@@ -18,8 +18,11 @@ const ataqueDelEnemigo = document.getElementById('ataque-Del-Enemigo');
 const parrafo = document.getElementById('mensajes');  
 
 const sectionReiniciar = document.getElementById('reiniciar');
-const contenedorTarjetas = document.getElementById('contenedorTarjetas')
+const contenedorTarjetas = document.getElementById('contenedorTarjetas');
 const contenedorAtaques = document.getElementById('contenedorAtaques');
+
+const sectionVerMapa = document.getElementById('ver-mapa');
+const mapa = document.getElementById('mapa');
 
 let mokepones = [];
 let ataqueJugador = [];
@@ -41,6 +44,7 @@ let mascotaJugador;
 let botones = [];
 let victoriasJugador = 0;
 let victoriasEnemigo = 0;
+let lienzo = mapa.getContext("2d");
 
 class Mokepon{
 
@@ -88,6 +92,7 @@ mokepones.push(hipodoge,capipepo,ratigueya);
 
 function iniciarJuego(){
 
+    
     mokepones.forEach((mokepon) =>{
         opcionMokepones = `
         <input type="radio" name="mascota" id=${mokepon.nombre}>
@@ -104,6 +109,7 @@ function iniciarJuego(){
     }) 
 
     botonMascota.addEventListener('click', seleccionarMascota);
+    sectionVerMapa.style.display = 'none';
     sectionAtaque.style.display = 'none';
     sectionReinicio.style.display = 'none';
     
@@ -143,7 +149,21 @@ function seleccionarMascota(){
     sectionMascota.style.display = 'none';
 
     
-    sectionAtaque.style.display = 'flex';
+    //sectionAtaque.style.display = 'flex';
+
+    sectionVerMapa.style.display = 'flex';
+
+    let imagenDeCapipepo = new Image()
+    imagenDeCapipepo.src = capipepo.foto
+
+    lienzo.drawImage(
+        imagenDeCapipepo,
+        20,
+        40,
+        100,
+        100,
+    )
+
 
     if(inputHipodoge.checked){
 
