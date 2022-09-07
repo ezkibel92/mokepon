@@ -53,28 +53,49 @@ mapaBackground.src = './img/mokemap.png';
 
 class Mokepon{
 
-    constructor(nombre, foto, vida,){
+    constructor(nombre, foto, vida, fotoMapa, x=10, y=10){
 
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
         this.ataques = [];
-        this.x = 20;
-        this.y = 30;
+        this.x = x;
+        this.y = y;
         this.ancho = 80;
         this.alto = 80;
         this.mapaFoto = new Image()
-        this.mapaFoto.src = foto;
+        this.mapaFoto.src = fotoMapa;
         this.velocidadX = 0;
         this.velocidadY = 0;
     }
+
+    pintarMokepon(){
+
+        lienzo.drawImage(
+            this.mapaFoto,
+            this.x,
+            this.y,
+            this.alto,
+            this.ancho
+        )
+    
+
+    }
 }
 
-let hipodoge = new Mokepon('hipodoge', 'img/hipodoge_attack.png', 5);
+let hipodoge = new Mokepon('hipodoge', 'img/hipodoge_attack.png', 5, './img/hipodoge.png');
 
-let capipepo = new Mokepon('capipepo', 'img/capipepo_attack.png', 5);
+let capipepo = new Mokepon('capipepo', 'img/capipepo_attack.png', 5, './img/capipepo.png');
 
-let ratigueya = new Mokepon('ratigueya', 'img/ratigueya_attack.png', 5);
+let ratigueya = new Mokepon('ratigueya', 'img/ratigueya_attack.png', 5, './img/ratigueya.png');
+
+
+let hipodogeEnemigo = new Mokepon('hipodoge', 'img/hipodoge_attack.png', 5, './img/hipodoge.png', 200, 400);
+
+let capipepoEnemigo = new Mokepon('capipepo', 'img/capipepo_attack.png', 5, './img/capipepo.png', 700, 450);
+
+let ratigueyaEnemigo = new Mokepon('ratigueya', 'img/ratigueya_attack.png', 5, './img/ratigueya.png', 200, 190);
+
 
 hipodoge.ataques.push(
     {nombre:'💧', id: 'boton-agua'},
@@ -387,13 +408,11 @@ function pintarCanvas(){
         mapa.width,
         mapa.height
     )
-    lienzo.drawImage(
-        mascotaJugadorObejto.mapaFoto,
-        mascotaJugadorObejto.x,
-        mascotaJugadorObejto.y,
-        mascotaJugadorObejto.alto,
-        mascotaJugadorObejto.ancho
-    )
+    
+    mascotaJugadorObejto.pintarMokepon();
+    hipodogeEnemigo.pintarMokepon();
+    ratigueyaEnemigo.pintarMokepon();
+    capipepoEnemigo.pintarMokepon();
 
 }
 
