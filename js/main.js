@@ -1,23 +1,23 @@
 
 //Este evento de window, agregando el parametro load, ejecuta el otro parametro cuando termine de cargar el HTML
 window.addEventListener('load',iniciarJuego);
-
+const sectionAtaque = document.getElementById('seleccionar-ataque');
 const botonMascota = document.getElementById('boton-mascota');
-const sectionReinicio = document.getElementById('reiniciar');
+const sectionReiniciar = document.getElementById('reiniciar');
 const botonReinicio = document.getElementById('boton-reiniciar');
 
 const spanMascotaJugador = document.getElementById('mascotaJugador');
 const sectionMascota = document.getElementById('seleccionar-mascota');
-const sectionAtaque = document.getElementById('seleccionar-ataque');
+
 const spanMascotaEnemigo = document.getElementById('mascotaEnemigo');
+
 const spanVidasJugador = document.getElementById('vidas-Jugador');
 const spanVidasEnemigo = document.getElementById('vidas-Enemigo');
+
 const seccionMensaje = document.getElementById('resultado');
 const ataqueDelJugador = document.getElementById('ataque-Del-Jugador');
 const ataqueDelEnemigo = document.getElementById('ataque-Del-Enemigo');
-const parrafo = document.getElementById('mensajes');  
-
-const sectionReiniciar = document.getElementById('reiniciar');
+const parrafo = document.getElementById('mensajes');
 const contenedorTarjetas = document.getElementById('contenedorTarjetas');
 const contenedorAtaques = document.getElementById('contenedorAtaques');
 
@@ -49,7 +49,20 @@ let lienzo = mapa.getContext("2d");
 let intervalo;
 let mapaBackground = new Image()
 mapaBackground.src = './img/mokemap.png';
+let alturaQueBuscamos;
+let anchoDelMapa = window.innerWidth -20;
+const anchoMaximoDelMapa = 800
 
+if(anchoDelMapa > anchoMaximoDelMapa){
+
+    anchoDelMapa = anchoMaximoDelMapa - 20
+
+}
+
+alturaQueBuscamos = anchoDelMapa * 600 / 800;
+
+mapa.width = anchoDelMapa;
+mapa.height = alturaQueBuscamos;
 
 class Mokepon{
 
@@ -151,6 +164,9 @@ mokepones.push(hipodoge,capipepo,ratigueya);
 
 function iniciarJuego(){
 
+    sectionVerMapa.style.display = 'none';
+    sectionAtaque.style.display = 'none';
+    sectionReiniciar.style.display = 'none';
     
     mokepones.forEach((mokepon) =>{
         opcionMokepones = `
@@ -168,37 +184,11 @@ function iniciarJuego(){
     }) 
 
     botonMascota.addEventListener('click', seleccionarMascota);
-    sectionVerMapa.style.display = 'none';
-    sectionAtaque.style.display = 'none';
-    sectionReinicio.style.display = 'none';
     
     botonReinicio.addEventListener('click', reiniciarJuego);
 }
 
 
-
-function ataqueAleatorioEnemigo(){
-    let ataque = aleatorio(0,ataquesMokeponEnemigo.length - 1)
-
-    if (ataque == 0 || ataque == 1){
-
-        ataqueEnemigo.push('AGUA');
-        
-
-    }else if(ataque == 3 || ataque == 4){
-
-        ataqueEnemigo.push('FUEGO');
-        
-
-    }else{
-
-        ataqueEnemigo.push('TIERRA');
-        
-    }
-
-    combate();
-
-}
 
 
 
@@ -209,18 +199,12 @@ function seleccionarMascota(){
 
 
     if(inputHipodoge.checked){
-
-        alert('SELECCIONASTE TU MASCOTA: Hipodoge');
         spanMascotaJugador.innerHTML = inputHipodoge.id;
         mascotaJugador = inputHipodoge.id;
     }else if(inputCapipepo.checked){
-        
-        alert('SELECCIONASTE TU MASCOTA: Capipepo');
         spanMascotaJugador.innerHTML = inputCapipepo.id;
         mascotaJugador = inputCapipepo.id;
     }else if(inputRatigueya.checked){
-
-        alert('SELECCIONASTE TU MASCOTA: Ratigueya');
         spanMascotaJugador.innerHTML = inputRatigueya.id;
         mascotaJugador = inputRatigueya.id;
 
@@ -229,13 +213,11 @@ function seleccionarMascota(){
         
     }
 
+    extraerAtaques(mascotaJugador);
     sectionVerMapa.style.display = 'flex';
-   
     iniciarMapa();
 
     
-    seleccionarMascotaEnemigo();
-    extraerAtaques(mascotaJugador);
 }
 
 function extraerAtaques(mascotaJugador){
@@ -249,7 +231,6 @@ function extraerAtaques(mascotaJugador){
         
     }
     mostrarAtaques(ataques);
-    secuenciaAtaque();
 }
 
 
@@ -257,14 +238,16 @@ function mostrarAtaques(ataques){
 
     ataques.forEach((ataque) => {
 
-        ataquesMokepon =`<button id=${ataque.id} class="boton-de-ataque BAtaque">${ataque.nombre} </button> `
+        ataquesMokepon = `
+        <button id=${ataque.id} class="boton-de-ataque BAtaque">${ataque.nombre}</button>
+        `
         contenedorAtaques.innerHTML += ataquesMokepon;
+
     })
 
      botonAgua = document.getElementById('boton-agua');
      botonFuego = document.getElementById('boton-fuego');
      botonTierra = document.getElementById('boton-tierra');
-     
      botones = document.querySelectorAll('.BAtaque');
 
      
@@ -277,14 +260,17 @@ function secuenciaAtaque(){
         boton.addEventListener('click', (e) => {
             if(e.target.textContent === '🔥'){
                 ataqueJugador.push('FUEGO')
+                console.log(ataqueJugador)
                 boton.style.background = '#F34545'
                 boton.disabled = true;
             }else if(e.target.textContent === '💧'){
                 ataqueJugador.push('AGUA')
+                console.log(ataqueJugador)
                 boton.style.background = '#F34545'
                 boton.disabled = true;
             }else{
                 ataqueJugador.push('TIERRA')
+                console.log(ataqueJugador)
                 boton.style.background = '#F34545'
                 boton.disabled = true;
             }
@@ -302,6 +288,30 @@ function seleccionarMascotaEnemigo(enemigo){
     secuenciaAtaque()
 }
 
+function ataqueAleatorioEnemigo(){
+    console.log('Ataques enemigo', ataquesMokeponEnemigo);
+    let ataqueAleatorio = aleatorio(0,ataquesMokeponEnemigo.length - 1)
+
+    if (ataqueAleatorio == 0 || ataqueAleatorio == 1){
+
+        ataqueEnemigo.push('AGUA');
+        
+
+    }else if(ataqueAleatorio == 3 || ataqueAleatorio == 4){
+
+        ataqueEnemigo.push('FUEGO');
+        
+
+    }else{
+
+        ataqueEnemigo.push('TIERRA');
+        
+    }
+    console.log(ataqueAleatorio);
+    console.log(ataqueEnemigo);
+    iniciarPelea();
+
+}
 
 function iniciarPelea(){
 
@@ -414,6 +424,12 @@ function reiniciarJuego(){
 
 }
 
+function aleatorio(min, max){
+    return Math.floor(Math.random() * (max - min + 1)+ min);
+}
+
+
+
 function pintarCanvas(){
 
 
@@ -501,8 +517,6 @@ function sePresionoUnaTecla(event){
 
 function iniciarMapa(){
 
-    mapa.width = 800;
-    mapa.height = 600;
     mascotaJugadorObejto = obtenerObjetoMascota(mascotaJugador);
     intervalo = setInterval(pintarCanvas, 50);
 
@@ -546,11 +560,9 @@ function revisarColision(enemigo){
     }
 
     detenerMoviemiento();
+    clearInterval(intervalo);
     sectionAtaque.style.display = 'flex';
     sectionVerMapa.style.display = 'none';
     seleccionarMascotaEnemigo(enemigo);
 }
 
-function aleatorio(min, max){
-    return Math.floor(Math.random() * (max - min + 1)+ min);
-}
