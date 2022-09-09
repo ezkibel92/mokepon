@@ -74,8 +74,8 @@ class Mokepon{
         this.ataques = [];
         this.x = x;
         this.y = y;
-        this.ancho = 80;
-        this.alto = 80;
+        this.ancho = 45;
+        this.alto = 45;
         this.mapaFoto = new Image()
         this.mapaFoto.src = fotoMapa;
         this.velocidadX = 0;
@@ -103,11 +103,11 @@ let capipepo = new Mokepon('capipepo', 'img/capipepo_attack.png', 5, './img/capi
 let ratigueya = new Mokepon('ratigueya', 'img/ratigueya_attack.png', 5, './img/ratigueya.png');
 
 
-let hipodogeEnemigo = new Mokepon('hipodoge', 'img/hipodoge_attack.png', 5, './img/hipodoge.png', 200, 400);
+let hipodogeEnemigo = new Mokepon('hipodoge', 'img/hipodoge_attack.png', 5, './img/hipodoge.png', anchoDelMapa / 4, alturaQueBuscamos / 2 * 1.5);
 
-let capipepoEnemigo = new Mokepon('capipepo', 'img/capipepo_attack.png', 5, './img/capipepo.png', 700, 450);
+let capipepoEnemigo = new Mokepon('capipepo', 'img/capipepo_attack.png', 5, './img/capipepo.png', (anchoDelMapa / 10)*8, (alturaQueBuscamos / 10)* 7);
 
-let ratigueyaEnemigo = new Mokepon('ratigueya', 'img/ratigueya_attack.png', 5, './img/ratigueya.png', 200, 190);
+let ratigueyaEnemigo = new Mokepon('ratigueya', 'img/ratigueya_attack.png', 5, './img/ratigueya.png', anchoDelMapa / 3.5, alturaQueBuscamos / 3);
 
 
 hipodoge.ataques.push(
