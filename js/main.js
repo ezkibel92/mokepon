@@ -66,16 +66,16 @@ mapa.height = alturaQueBuscamos;
 
 class Mokepon{
 
-    constructor(nombre, foto, vida, fotoMapa, x=10, y=10){
+    constructor(nombre, foto, vida, fotoMapa){
 
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
         this.ataques = [];
-        this.x = x;
-        this.y = y;
         this.ancho = 45;
         this.alto = 45;
+        this.x = aleatorio(0, mapa.width - this.ancho);
+        this.y = aleatorio(0, mapa.height - this.alto);;
         this.mapaFoto = new Image()
         this.mapaFoto.src = fotoMapa;
         this.velocidadX = 0;
@@ -103,11 +103,11 @@ let capipepo = new Mokepon('capipepo', 'img/capipepo_attack.png', 5, './img/capi
 let ratigueya = new Mokepon('ratigueya', 'img/ratigueya_attack.png', 5, './img/ratigueya.png');
 
 
-let hipodogeEnemigo = new Mokepon('hipodoge', 'img/hipodoge_attack.png', 5, './img/hipodoge.png', anchoDelMapa / 4, alturaQueBuscamos / 2 * 1.5);
+let hipodogeEnemigo = new Mokepon('hipodoge', 'img/hipodoge_attack.png', 5, './img/hipodoge.png');
 
-let capipepoEnemigo = new Mokepon('capipepo', 'img/capipepo_attack.png', 5, './img/capipepo.png', (anchoDelMapa / 10)*8, (alturaQueBuscamos / 10)* 7);
+let capipepoEnemigo = new Mokepon('capipepo', 'img/capipepo_attack.png', 5, './img/capipepo.png');
 
-let ratigueyaEnemigo = new Mokepon('ratigueya', 'img/ratigueya_attack.png', 5, './img/ratigueya.png', anchoDelMapa / 3.5, alturaQueBuscamos / 3);
+let ratigueyaEnemigo = new Mokepon('ratigueya', 'img/ratigueya_attack.png', 5, './img/ratigueya.png');
 
 
 hipodoge.ataques.push(
