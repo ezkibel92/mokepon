@@ -165,10 +165,17 @@ input:checked + label{
 
     .tarjetas img{
         
-      width: 13vw;
-      height: 16vh;
+      width: 10vw;
+      position: absolute;
+      
     }
 
+    .boton-de-ataque{
+
+    
+        width: 10vw;
+        height: 5vh;
+    }
     .caja-seleccionar{
         
         margin-top: 5%;
@@ -184,16 +191,37 @@ input:checked + label{
         
     }
 
+
     #seleccionar-mascota button {
         width: 12vw;
         height: 5vw;
         margin: auto 0px;
     }
 
+
     #seleccionar-mascota p{
         text-align: right;
-        padding-right: 1em;
-        font-size: 1.5em;
+        padding-top: 1em;
+        padding-right: 0.5em;
+        font-size: 2em;
+        position:sticky;
     }
+
+
+
+    #mensajes {
+        width: 15vw;
+        height: 7.5vw;
+        
+        
+    }
+
+    #boton-reiniciar{
+        
+        width: 15vw;
+        height: 7.5vh;
+        
+    }
+    
 }
 
