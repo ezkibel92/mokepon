@@ -1,1 +1,8 @@
-console.log("Hola mundo");
+const express = require("express");
+
+const app = express();
+
+app.listen(8080, ()=>{
+
+    console.log("El server ya inicio")
+})
